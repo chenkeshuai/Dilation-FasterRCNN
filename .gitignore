@@ -51,3 +51,6 @@ _darcs
 /projects/*/datasets
 /models
 /snippet
+
+# distillation teacher model
+/detection2/save
