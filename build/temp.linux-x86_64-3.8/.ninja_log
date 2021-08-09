@@ -1,0 +1,12 @@
+# ninja log v5
+7	1007	1628154579	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/cuda_version.o	7a8260fb3593133d
+3	7384	1628154585	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/cocoeval/cocoeval.o	6297b44d5d87c199
+3	7604	1628154586	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o	c1c716cca9fb5347
+3	8834	1628154587	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o	6366c6e570fc085a
+4	11897	1628154590	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o	ce06328ab4f3d8aa
+4	13684	1628154592	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.o	e94cc0510493920f
+6	13985	1628154592	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.o	270880e6706bb9d9
+5	14122	1628154592	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.o	7371ab9d49831430
+6	14567	1628154593	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o	8cda914dcf9d2141
+5	18325	1628154596	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/deformable/deform_conv_cuda.o	784bce5ae5de7345
+2	29063	1628154607	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/vision.o	8061675396f35cae
