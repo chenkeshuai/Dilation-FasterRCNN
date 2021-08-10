@@ -11,7 +11,7 @@
 ```
 修改configs中文件的相关参数，将DISTILL.DO设置为True则在您的工作中加入蒸馏
 
-### 2 运行代码示例
+## 2. 运行代码示例
 单GPU运行
 ```
 python tools/train_net.py   --config-file configs/COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025

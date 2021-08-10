@@ -56,7 +56,7 @@ class FPN(Backbone):
         input_shapes = bottom_up.output_shape()
         strides = [input_shapes[f].stride for f in in_features]
         in_channels_per_feature = [input_shapes[f].channels for f in in_features]
-        # import pdb;pdb.set_trace()
+        #  
 
         _assert_strides_are_log2_contiguous(strides)
         lateral_convs = []
@@ -88,7 +88,7 @@ class FPN(Backbone):
 
             lateral_convs.append(lateral_conv)
             output_convs.append(output_conv)
-        # import pdb;pdb.set_trace()
+        #  
         # 将转换按自上而下的顺序（从低到高分辨率）放置，以使自上而下的计算向前更清晰。
         self.lateral_convs = lateral_convs[::-1]
         self.output_convs = output_convs[::-1]
@@ -120,7 +120,7 @@ class FPN(Backbone):
 
         # 融合方式，例如sum
         self._fuse_type = fuse_type
-        # import pdb;pdb.set_trace()
+        #  
 
     @property
     def size_divisibility(self):

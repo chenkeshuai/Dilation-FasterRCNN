@@ -158,7 +158,7 @@ class TrainerBase:
 
     def before_train(self):
         for h in self._hooks:
-            # import pdb;pdb.set_trace()
+            #  
             h.before_train()
 
     def after_train(self):
@@ -269,7 +269,9 @@ class SimpleTrainer(TrainerBase):
         """
         If you want to do something with the losses, you can wrap the model.
         """
+
         loss_dict = self.model(data)
+        
         if isinstance(loss_dict, torch.Tensor):
             losses = loss_dict
             loss_dict = {"total_loss": loss_dict}

@@ -630,7 +630,7 @@ _C.GLOBAL.HACK = 1.0
 
 #==================================蒸馏参数=====================================
 _C.DISTILL = CN()
-_C.DISTILL.DO =  False
+_C.DISTILL.ENABLE =  False
 _C.DISTILL.PATH_T = None
 _C.DISTILL.CFG_T = None
 _C.DISTILL.DISTILL =  'kd'

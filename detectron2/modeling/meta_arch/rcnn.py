@@ -43,7 +43,7 @@ class GeneralizedRCNN(nn.Module):
         pixel_std: Tuple[float],
         input_format: Optional[str] = None,
         vis_period: int = 0,
-        distill_cfg: dict = None # 添加蒸馏参数
+        distill_cfg: dict = None, # 添加蒸馏参数
     ):
         """
         Args:
@@ -71,8 +71,13 @@ class GeneralizedRCNN(nn.Module):
             self.pixel_mean.shape == self.pixel_std.shape
         ), f"{self.pixel_mean} and {self.pixel_std} have different shapes!"
         
+        # ==================================蒸馏====================================
         # 添加蒸馏参数
         self.distill_cfg = distill_cfg
+
+        # 构建教师模型
+        if distill_cfg.ENABLE:
+            self.distill_model = Distill(self.distill_cfg)
 
     @classmethod
     def from_config(cls, cfg):
@@ -176,14 +181,15 @@ class GeneralizedRCNN(nn.Module):
             if storage.iter % self.vis_period == 0:
                 self.visualize_training(batched_inputs, proposals)
 
-        # distill_losses
-        if self.distill_cfg.DO:
-            distill_losses = self.distill(features, batched_inputs)
-
         losses = {}
         losses.update(detector_losses)
         losses.update(proposal_losses)
-        losses.update(distill_losses)
+        
+        # distill_losses
+        if self.distill_cfg.ENABLE:
+            distill_losses = self.distill_model.compute_distill_loss(batched_inputs, features)
+            losses.update(distill_losses)
+        
         return losses
 
     def get_features(self, batched_inputs):
@@ -195,12 +201,6 @@ class GeneralizedRCNN(nn.Module):
         images = self.preprocess_image(batched_inputs)
         features = self.backbone(images.tensor)
         return features
-
-    def distill(self, logit_s, batched_inputs):
-        '''构建教师模型，计算蒸馏损失'''
-        distill_model = Distill(self.distill_cfg)
-        distill_loss = distill_model.compute_distill_loss(batched_inputs, logit_s)
-        return distill_loss
 
     def inference(
         self,

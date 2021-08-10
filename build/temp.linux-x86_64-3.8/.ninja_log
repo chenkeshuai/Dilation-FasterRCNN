@@ -10,3 +10,14 @@
 6	14567	1628154593	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o	8cda914dcf9d2141
 5	18325	1628154596	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/deformable/deform_conv_cuda.o	784bce5ae5de7345
 2	29063	1628154607	/home/jingyaoli/detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/detectron2/detectron2/layers/csrc/vision.o	8061675396f35cae
+7	969	1628593485	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/cuda_version.o	f8e6105b03d0935f
+3	6936	1628593491	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/cocoeval/cocoeval.o	c803a570b1d47b2
+3	7275	1628593491	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o	699f0a5c4e5f90de
+4	8574	1628593493	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o	93ed86d5ba9fc820
+4	11487	1628593496	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o	7a05f7a4980ee5d6
+6	13652	1628593498	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.o	d0cdca7cddb1396a
+5	14079	1628593498	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.o	92dc88491d34628e
+5	14101	1628593498	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.o	10c15ffe7de0394
+6	14841	1628593499	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o	60a9405f32744002
+5	19421	1628593504	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/deformable/deform_conv_cuda.o	3c811bd0ed93d56e
+2	29608	1628593514	/home/jingyaoli/new_detectron2/build/temp.linux-x86_64-3.8/home/jingyaoli/new_detectron2/detectron2/layers/csrc/vision.o	f82cdac325357328

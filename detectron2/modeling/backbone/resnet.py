@@ -399,7 +399,7 @@ class ResNet(Backbone):
                 [{"res2": 1, "res3": 2, "res4": 3, "res5": 4}.get(f, 0) for f in out_features]
             )
             stages = stages[:num_stages]
-            # import pdb;pdb.set_trace()
+            #  
 
         for i, blocks in enumerate(stages):
             assert len(blocks) > 0, len(blocks)
@@ -535,7 +535,7 @@ class ResNet(Backbone):
         all be 1.
         """
         blocks = []
-        # import pdb;pdb.set_trace()
+        #  
         
         # 添加num_block个basicblock
         for i in range(num_blocks):
@@ -551,12 +551,12 @@ class ResNet(Backbone):
                     curr_kwargs[newk] = v[i]
                 else:
                     curr_kwargs[k] = v
-            # import pdb;pdb.set_trace()
+            #  
             blocks.append(
                 block_class(in_channels=in_channels, out_channels=out_channels, **curr_kwargs)
             )
             in_channels = out_channels
-        # import pdb;pdb.set_trace()
+        #  
         return blocks
 
     @staticmethod
@@ -634,7 +634,7 @@ def build_resnet_backbone(cfg, input_shape):
         ResNet: a :class:`ResNet` instance.
     """
     # need registration of new blocks/stems?
-    # import pdb;pdb.set_trace()
+    #  
     norm = cfg.MODEL.RESNETS.NORM
 
     # 第一层卷积层

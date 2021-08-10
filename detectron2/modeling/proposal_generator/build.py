@@ -18,7 +18,7 @@ def build_proposal_generator(cfg, input_shape):
     The name can be "PrecomputedProposals" to use no proposal generator.
     """
     name = cfg.MODEL.PROPOSAL_GENERATOR.NAME
-    # import pdb;pdb.set_trace()
+    #  
     if name == "PrecomputedProposals":
         return None
 

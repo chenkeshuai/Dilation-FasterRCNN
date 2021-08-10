@@ -4,3 +4,15 @@ MODEL:
   MASK_ON: False
   RESNETS:
     DEPTH: 50
+#==================================蒸馏参数=====================================
+DISTILL:
+  ENABLE: True
+  PATH_T: 'detectron2/teacher_models/FasterRCNN-R101-FPN-lr3x.pkl'
+  CFG_T: 'configs/COCO-Detection/teacher_models/faster_rcnn_R_101_FPN_3x.yaml'
+  DISTILL: 'kd'
+  # choices =  ['kd', 'hint', 'attention', 'similarity','correlation', 'vid', 'crd', 'kdsvd', 'fsp',
+  #             'rkd', 'pkt', 'abound', 'factor', 'nst']
+  # trial id
+  TRIAL: 1.0    
+  # weight balance for other losses
+  B: 1.0
