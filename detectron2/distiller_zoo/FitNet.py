@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import torch.nn as nn
 
-
 class HintLoss(nn.Module):
     """Fitnets: hints for thin deep nets, ICLR 2015"""
     def __init__(self):

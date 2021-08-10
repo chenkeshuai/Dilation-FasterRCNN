@@ -632,6 +632,7 @@ _C.GLOBAL.HACK = 1.0
 _C.DISTILL = CN()
 _C.DISTILL.DO =  False
 _C.DISTILL.PATH_T = None
+_C.DISTILL.CFG_T = None
 _C.DISTILL.DISTILL =  'kd'
 # choices =  ['kd', 'hint', 'attention', 'similarity','correlation', 'vid', 'crd', 'kdsvd', 'fsp',
 #             'rkd', 'pkt', 'abound', 'factor', 'nst']

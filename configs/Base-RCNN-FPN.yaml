@@ -43,7 +43,8 @@ VERSION: 2
 #==================================蒸馏参数=====================================
 DISTILL:
   DO: True
-  PATH_T: 'detectron2/save/resnet56_vanilla/ckpt_epoch_240.pth'
+  PATH_T: 'detectron2/teacher_models/R101-FPN-lr3x.pkl'
+  CFG_T: 'configs/COCO-Detection/teacher_models/faster_rcnn_R_101_FPN_3x.yaml'
   DISTILL: 'kd'
   # choices =  ['kd', 'hint', 'attention', 'similarity','correlation', 'vid', 'crd', 'kdsvd', 'fsp',
   #             'rkd', 'pkt', 'abound', 'factor', 'nst']

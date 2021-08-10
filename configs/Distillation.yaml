@@ -4,10 +4,6 @@ DISTILL: 'kd'
 # choices =  ['kd', 'hint', 'attention', 'similarity','correlation', 'vid', 'crd', 'kdsvd', 'fsp',
 #             'rkd', 'pkt', 'abound', 'factor', 'nst']
 # trial id
-TRIAL: 1  
-# weight for classification
-R: 0.1    
-# weight balance for KD
-A: 0.9     
+TRIAL: 1     
 # weight balance for other losses
-B: 0     
+B: 1.0    

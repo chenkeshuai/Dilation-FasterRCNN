@@ -29,18 +29,3 @@ SOLVER:
 INPUT:
   MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
 VERSION: 2
-#==================================蒸馏参数=====================================
-DISTILL:
-  DO: True
-  PATH_T: 'detectron2/save/resnet56_vanilla/ckpt_epoch_240.pth'
-  DISTILL: 'kd'
-  # choices =  ['kd', 'hint', 'attention', 'similarity','correlation', 'vid', 'crd', 'kdsvd', 'fsp',
-  #             'rkd', 'pkt', 'abound', 'factor', 'nst']
-  # trial id
-  TRIAL: 1.0
-  # weight for classification
-  R: 0.1    
-  # weight balance for KD
-  A: 0.9     
-  # weight balance for other losses
-  B: 0.0

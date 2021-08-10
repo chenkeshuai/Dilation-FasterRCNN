@@ -18,7 +18,7 @@ from ..roi_heads import build_roi_heads
 from .build import META_ARCH_REGISTRY
 
 # 调用蒸馏损失函数
-from detectron2.distiller_zoo import DistillKL
+from detectron2.distiller_helper.distill import Distill
 
 __all__ = ["GeneralizedRCNN", "ProposalNetwork"]
 
@@ -176,17 +176,31 @@ class GeneralizedRCNN(nn.Module):
             if storage.iter % self.vis_period == 0:
                 self.visualize_training(batched_inputs, proposals)
 
-        # distill_loss
-        distill_loss = self.distillation()
+        # distill_losses
+        if self.distill_cfg.DO:
+            distill_losses = self.distill(features, batched_inputs)
 
         losses = {}
         losses.update(detector_losses)
         losses.update(proposal_losses)
-        import pdb;pdb.set_trace()
+        losses.update(distill_losses)
         return losses
 
-    def distillation():
-        pass
+    def get_features(self, batched_inputs):
+        '''
+        return: dict
+            keys: 'p2'-'p6'
+            values: 分别对应FPN第n层的特征层
+        '''
+        images = self.preprocess_image(batched_inputs)
+        features = self.backbone(images.tensor)
+        return features
+
+    def distill(self, logit_s, batched_inputs):
+        '''构建教师模型，计算蒸馏损失'''
+        distill_model = Distill(self.distill_cfg)
+        distill_loss = distill_model.compute_distill_loss(batched_inputs, logit_s)
+        return distill_loss
 
     def inference(
         self,
