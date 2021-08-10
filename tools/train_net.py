@@ -125,8 +125,7 @@ def setup(args):
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.freeze()
-    default_setup(cfg, args)
-    # import pdb;pdb.set_trace()
+    default_setup(cfg, args)   
     return cfg
 
 
@@ -164,8 +163,8 @@ def main(args):
 
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
-    # import pdb;pdb.set_trace()
     print("Command Line Args:", args)
+    # import pdb;pdb.set_trace()
     launch(
         main,
         args.num_gpus,

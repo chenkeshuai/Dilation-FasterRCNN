@@ -154,16 +154,13 @@ class FPN(Backbone):
             # 我们遍历所有模块但跳过第一个
             if idx > 0:
                 features = self.in_features[-idx - 1]
-                import pdb;pdb.set_trace()
                 features = bottom_up_features[features]
                 top_down_features = F.interpolate(prev_features, scale_factor=2.0, mode="nearest")
                 lateral_features = lateral_conv(features)
                 prev_features = lateral_features + top_down_features
-                import pdb;pdb.set_trace()
                 if self._fuse_type == "avg":
                     prev_features /= 2
                 results.insert(0, output_conv(prev_features))
-                import pdb;pdb.set_trace()
 
         if self.top_block is not None:
             if self.top_block.in_feature in bottom_up_features:

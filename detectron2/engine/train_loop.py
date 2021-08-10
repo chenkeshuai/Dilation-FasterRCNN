@@ -270,11 +270,13 @@ class SimpleTrainer(TrainerBase):
         If you want to do something with the losses, you can wrap the model.
         """
         loss_dict = self.model(data)
+        import pdb;pdb.set_trace()
         if isinstance(loss_dict, torch.Tensor):
             losses = loss_dict
             loss_dict = {"total_loss": loss_dict}
         else:
             losses = sum(loss_dict.values())
+            
 
         """
         If you need to accumulate gradients or do something similar, you can

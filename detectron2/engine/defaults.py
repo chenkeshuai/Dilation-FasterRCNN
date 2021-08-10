@@ -92,18 +92,18 @@ def default_argument_parser(epilog=None):
     parser = argparse.ArgumentParser(
         epilog=epilog
         or f"""
-Examples:
+    Examples:
 
-Run on single machine:
-    $ {sys.argv[0]} --num-gpus 8 --config-file cfg.yaml
+    Run on single machine:
+        $ {sys.argv[0]} --num-gpus 8 --config-file cfg.yaml
 
-Change some config options:
-    $ {sys.argv[0]} --config-file cfg.yaml MODEL.WEIGHTS /path/to/weight.pth SOLVER.BASE_LR 0.001
+    Change some config options:
+        $ {sys.argv[0]} --config-file cfg.yaml MODEL.WEIGHTS /path/to/weight.pth SOLVER.BASE_LR 0.001
 
-Run on multiple machines:
-    (machine0)$ {sys.argv[0]} --machine-rank 0 --num-machines 2 --dist-url <URL> [--other-flags]
-    (machine1)$ {sys.argv[0]} --machine-rank 1 --num-machines 2 --dist-url <URL> [--other-flags]
-""",
+    Run on multiple machines:
+        (machine0)$ {sys.argv[0]} --machine-rank 0 --num-machines 2 --dist-url <URL> [--other-flags]
+        (machine1)$ {sys.argv[0]} --machine-rank 1 --num-machines 2 --dist-url <URL> [--other-flags]
+    """,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--config-file", default="", metavar="FILE", help="path to config file")
@@ -140,12 +140,12 @@ For python-based LazyConfig, use "path.key=value".
         default=None,
         nargs=argparse.REMAINDER,
     )
+    
     return parser
-
 
 def _try_get_key(cfg, *keys, default=None):
     """
-    Try select keys from cfg until the first key that exists. Otherwise return default.
+    尝试从 cfg 中选择键直到找到存在的第一个键。 否则返回默认值。
     """
     if isinstance(cfg, CfgNode):
         cfg = OmegaConf.create(cfg.dump())
@@ -190,6 +190,7 @@ def default_setup(cfg, args):
         args (argparse.NameSpace): the command line arguments to be logged
     """
     # 输出目录
+    
     output_dir = _try_get_key(cfg, "OUTPUT_DIR", "output_dir", "train.output_dir")
     if comm.is_main_process() and output_dir:
         PathManager.mkdirs(output_dir)
@@ -213,6 +214,7 @@ def default_setup(cfg, args):
         )
 
     # 将配置备份到输出目录
+    
     if comm.is_main_process() and output_dir:
         # Note: some of our scripts may expect the existence of
         # config.yaml in output directory
@@ -234,6 +236,9 @@ def default_setup(cfg, args):
         torch.backends.cudnn.benchmark = _try_get_key(
             cfg, "CUDNN_BENCHMARK", "train.cudnn_benchmark", default=False
         )
+
+
+
 
 
 def default_writers(output_dir: str, max_iter: Optional[int] = None):
@@ -512,7 +517,7 @@ class DefaultTrainer(TrainerBase):
         Overwrite it if you'd like a different model.
         """
         model = build_model(cfg)
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         logger = logging.getLogger(__name__)
         logger.info("Model:\n{}".format(model))
         return model

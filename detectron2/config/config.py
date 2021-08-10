@@ -44,14 +44,13 @@ class CfgNode(_CfgNode):
         """
         assert PathManager.isfile(cfg_filename), f"Config file '{cfg_filename}' does not exist!"
         loaded_cfg = self.load_yaml_with_base(cfg_filename, allow_unsafe=allow_unsafe)
-        # import pdb;pdb.set_trace()
+
         loaded_cfg = type(self)(loaded_cfg)
 
         # defaults.py needs to import CfgNode
         from .defaults import _C
 
         latest_ver = _C.VERSION
-        # import pdb;pdb.set_trace()
         assert (
             latest_ver == self.VERSION
         ), "CfgNode.merge_from_file is only allowed on a config object of latest version!"

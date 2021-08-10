@@ -17,6 +17,9 @@ from ..proposal_generator import build_proposal_generator
 from ..roi_heads import build_roi_heads
 from .build import META_ARCH_REGISTRY
 
+# 调用蒸馏损失函数
+from detectron2.distiller_zoo import DistillKL
+
 __all__ = ["GeneralizedRCNN", "ProposalNetwork"]
 
 
@@ -40,6 +43,7 @@ class GeneralizedRCNN(nn.Module):
         pixel_std: Tuple[float],
         input_format: Optional[str] = None,
         vis_period: int = 0,
+        distill_cfg: dict = None # 添加蒸馏参数
     ):
         """
         Args:
@@ -66,6 +70,9 @@ class GeneralizedRCNN(nn.Module):
         assert (
             self.pixel_mean.shape == self.pixel_std.shape
         ), f"{self.pixel_mean} and {self.pixel_std} have different shapes!"
+        
+        # 添加蒸馏参数
+        self.distill_cfg = distill_cfg
 
     @classmethod
     def from_config(cls, cfg):
@@ -78,6 +85,7 @@ class GeneralizedRCNN(nn.Module):
             "vis_period": cfg.VIS_PERIOD,
             "pixel_mean": cfg.MODEL.PIXEL_MEAN,
             "pixel_std": cfg.MODEL.PIXEL_STD,
+            "distill_cfg": cfg.DISTILL # 添加蒸馏参数
         }
 
     @property
@@ -153,6 +161,7 @@ class GeneralizedRCNN(nn.Module):
 
         features = self.backbone(images.tensor)
 
+        # proposal_losses
         if self.proposal_generator is not None:
             proposals, proposal_losses = self.proposal_generator(images, features, gt_instances)
         else:
@@ -160,16 +169,24 @@ class GeneralizedRCNN(nn.Module):
             proposals = [x["proposals"].to(self.device) for x in batched_inputs]
             proposal_losses = {}
 
+        # detector_losses
         _, detector_losses = self.roi_heads(images, features, proposals, gt_instances)
         if self.vis_period > 0:
             storage = get_event_storage()
             if storage.iter % self.vis_period == 0:
                 self.visualize_training(batched_inputs, proposals)
 
+        # distill_loss
+        distill_loss = self.distillation()
+
         losses = {}
         losses.update(detector_losses)
         losses.update(proposal_losses)
+        import pdb;pdb.set_trace()
         return losses
+
+    def distillation():
+        pass
 
     def inference(
         self,

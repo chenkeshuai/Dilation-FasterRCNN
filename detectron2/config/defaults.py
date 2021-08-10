@@ -627,3 +627,19 @@ _C.VIS_PERIOD = 0
 # Do not commit any configs into it.
 _C.GLOBAL = CN()
 _C.GLOBAL.HACK = 1.0
+
+#==================================蒸馏参数=====================================
+_C.DISTILL = CN()
+_C.DISTILL.DO =  False
+_C.DISTILL.PATH_T = None
+_C.DISTILL.DISTILL =  'kd'
+# choices =  ['kd', 'hint', 'attention', 'similarity','correlation', 'vid', 'crd', 'kdsvd', 'fsp',
+#             'rkd', 'pkt', 'abound', 'factor', 'nst']
+# trial id
+_C.DISTILL.TRIAL =  1.0 
+# weight for classification
+_C.DISTILL.R =  1.0
+# weight balance for KD
+_C.DISTILL.A =  None  
+# weight balance for other losses
+_C.DISTILL.B =  None    
