@@ -21,7 +21,7 @@ class Distill():
 
         # ==========================蒸馏损失函数==========================      
         # kd 损失函数
-        criterion_kd = HintLoss(self.opt.TRIAL)
+        criterion_kd = HintLoss()
 
         # 对五层FPN的损失取平均
         loss_kd = 0

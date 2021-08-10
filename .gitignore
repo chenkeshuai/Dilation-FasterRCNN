@@ -3,7 +3,6 @@ output
 instant_test_output
 inference_test_output
 
-
 *.png
 *.json
 *.diff
@@ -54,3 +53,6 @@ _darcs
 
 # distillation teacher model
 /detectron2/save
+
+# image config
+/scripts/*.yaml
