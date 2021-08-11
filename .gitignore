@@ -56,3 +56,5 @@ _darcs
 
 # image config
 /scripts/*.yaml
+
+/projects/MSAD/data
