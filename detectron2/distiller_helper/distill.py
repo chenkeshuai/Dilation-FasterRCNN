@@ -1,7 +1,6 @@
 from detectron2.config import get_cfg
 from detectron2.modeling.meta_arch import build_model
-from detectron2.distiller_zoo import DistillKL, HintLoss, Attention, Similarity, Correlation, VIDLoss, RKDLoss
-from detectron2.distiller_zoo import ABLoss, FSP, FactorTransfer, KDSVD, NSTLoss, PKT
+from detectron2.distiller_zoo import HintLoss, Attention, Similarity, NSTLoss, RKDLoss, PKT
 from detectron2.checkpoint import DetectionCheckpointer
 import torch
 
@@ -30,7 +29,22 @@ class Distill():
 
         # ==========================蒸馏损失函数==========================      
         # kd 损失函数
-        criterion_kd = HintLoss()
+        if self.opt.DISTILL == 'hint':
+            criterion_kd = HintLoss()
+        elif self.opt.DISTILL == 'attention':
+            criterion_kd = Attention()
+        elif self.opt.DISTILL == 'nst':
+            criterion_kd = NSTLoss()
+        elif self.opt.DISTILL == 'similarity':
+            criterion_kd = Similarity()
+        elif self.opt.DISTILL == 'rkd':
+            criterion_kd = RKDLoss()
+        elif self.opt.DISTILL == 'pkt':
+            criterion_kd = PKT()
+        elif self.opt.DISTILL == 'kdsvd':
+            criterion_kd = KDSVD()
+        else:
+            raise NotImplementedError(self.opt.DISTILL)
 
         # 对五层FPN的损失取平均
         loss_kd = 0
