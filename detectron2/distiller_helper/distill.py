@@ -3,6 +3,7 @@ from detectron2.modeling.meta_arch import build_model
 from detectron2.distiller_zoo import DistillKL, HintLoss, Attention, Similarity, Correlation, VIDLoss, RKDLoss
 from detectron2.distiller_zoo import ABLoss, FSP, FactorTransfer, KDSVD, NSTLoss, PKT
 from detectron2.checkpoint import DetectionCheckpointer
+import torch
 
 class Distill():
     def __init__(self, distill_cfg):
@@ -30,7 +31,8 @@ class Distill():
         '''计算蒸馏损失'''
         
         # 获取教师特征图
-        logit_t = self.model_t.get_features(batched_inputs)  
+        with torch.no_grad():
+            logit_t = self.model_t.get_features(batched_inputs)  
 
         # ==========================蒸馏损失函数==========================      
         # kd 损失函数
