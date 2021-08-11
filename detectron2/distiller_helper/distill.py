@@ -10,12 +10,6 @@ class Distill():
         self.opt = distill_cfg
         self.model_t = self.build_teacher_model()
 
-    def normarlize(self, x):
-        '''归一化'''
-        norm = x.sum()
-        x_norm = x/norm
-        return x_norm
-
     def build_teacher_model(self):
         '''构建教师模型'''
         # 模型创建
