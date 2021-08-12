@@ -20,18 +20,30 @@ python tools/train_net.py   --config-file configs/COCO-Detection/faster_rcnn_R_5
 ```
 python tools/train_net.py   --config-file configs/COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml --num-gpus 8
 ```
-## 3. 引用
 
-如果您在研究中使用 Dilation-FasterRCNN ，请使用以下 BibTeX 条目。
-
-```BibTeX
-@misc{Dilation-FasterRCNN,
-  author =       {JingyaoLi}},
-  title =        {Dilation-FasterRCNN},
-  howpublished = {\url{https://github.com/lijingyao20010602/Detectron2}},
-  year =         {2021}
-}
-```
-## 4. 模型效果
-
-近日整理后更新。
+## 3. 模型效果
+以下是对FasterRCNN进行蒸馏/不进行蒸馏的模型对比：
+<table><tbody>
+<!-- START TABLE -->
+<!-- TABLE HEADER -->
+<th valign="bottom">Backbone</th>
+<th valign="bottom">distill or not</th>
+<th valign="bottom">teacher model</th>
+<th valign="bottom">distill loss</th>
+<th valign="bottom">box AP</th>
+<!-- TABLE BODY -->
+<!-- ROW: FasterRCNN_R50-FPN -->
+ <tr><td align="left">R50-FPN</a></td>
+<td align="center">No</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">38.0</td>
+</tr>
+<!-- ROW: FasterRCNN_S_R50-FPN_T_R101-FPN_HintLoss -->
+ <tr><td align="left">R50-FPN</a></td>
+ <td align="center">Yes</td>
+<td align="center">R101-FPN</td>
+<td align="center">HintLoss</td>
+<td align="center">40.0</td>
+</tr>
+</tbody></table>
